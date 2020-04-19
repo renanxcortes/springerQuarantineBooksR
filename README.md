@@ -1,17 +1,25 @@
 # `springerQuarantineBooksR`: download all Springer books made available during the COVID-19 quarantine
 
-Intall the package and the following code:
+## Installation
+
+Having `devtools` installed and loaded, you can install `springerQuarantineBooksR` with the following code:
 
 ```
 devtools::install_github("renanxcortes/springerQuarantineBooksR")
 library(springerQuarantineBooksR)
+```
 
+## Download all books in any repo of your choice:
+
+```
 setwd('path_of_your_choice')
 
 tic('Total time: ')
 generate_springer_book_files()
 toc()
 ```
+
+## Download specific books only:
 
 If you'd like to download only Books related with "Data Science" on the title, for example, you can run:
 
