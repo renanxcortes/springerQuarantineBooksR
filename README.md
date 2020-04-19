@@ -1,5 +1,13 @@
 # `springerQuarantineBooksR`: download all Springer books made available during the COVID-19 quarantine
 
+**A range of essential textbooks from all disciplines will be freely available to support higher education institutions worldwide**
+
+Source: https://group.springernature.com/gp/group/media/press-releases/freely-accessible-textbook-initiative-for-educators-and-students/17858180?utm_medium=social&utm_content=organic&utm_source=facebook&utm_campaign=SpringerNature_&sf232256230=1
+
+This package has the `generate_springer_book_files` function which can be used to generate all (or a subset) of these Springer book files freely available.
+
+*This is still a work in progress. Thus, any help and/or feedbacks are welcome!*
+
 ## Installation
 
 Having `devtools` installed and loaded, you can install `springerQuarantineBooksR` with the following code:
@@ -38,3 +46,5 @@ generate_springer_book_files(specific_title_list)
 # Acknowledgments
 
 This is an R version of the `springer_free_books` project available at https://github.com/alexgand/springer_free_books.
+
+Thank you Springer!
