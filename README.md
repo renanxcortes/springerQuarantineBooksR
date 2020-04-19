@@ -10,7 +10,7 @@ This package has the `generate_springer_book_files` function which can be used t
 
 ## Installation
 
-Assuming you have `devtools` installed and loaded, you can install `springerQuarantineBooksR` with the following code:
+Assuming you have [devtools](https://github.com/r-lib/devtools) installed, you can install `springerQuarantineBooksR` with the following code:
 
 ```
 devtools::install_github("renanxcortes/springerQuarantineBooksR")
