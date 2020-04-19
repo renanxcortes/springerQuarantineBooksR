@@ -33,6 +33,8 @@ You'll get an output similar like this:
 
 ## Repo Structure generated
 
+It will be generated a repo named `springer_downloads` with a specific structure:
+
 ![](www/directory_org_example.png)
 
 ## Download only specific books:
