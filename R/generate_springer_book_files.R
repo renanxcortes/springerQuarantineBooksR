@@ -8,7 +8,7 @@ if (is.na(springer_table)) {
   springer_table <- read_excel(tf)
 }
 
-if (is.na(springer_books_titles)) { springer_books_titles <- springer_table$`Book Title`}
+if (is.na(springer_books_titles)) { springer_books_titles <- springer_table$`Book Title` %>% unique()}
 
 n <- length(springer_books_titles)
 
@@ -20,7 +20,8 @@ for (title in springer_books_titles) {
 
   en_book_type <- springer_table %>%
     filter(`Book Title` == title) %>%
-    pull(`English Package Name`)
+    pull(`English Package Name`) %>%
+    unique()
 
   current_folder = file.path('springer_downloads', en_book_type)
   if (!dir.exists(current_folder)) { dir.create(current_folder, recursive = T) }
