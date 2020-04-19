@@ -14,7 +14,7 @@ n <- length(springer_books_titles)
 
 i <- 1
 
-warning("Downloading title latest editions.")
+print("Downloading title latest editions.")
 
 for (title in springer_books_titles) {
 

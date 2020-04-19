@@ -53,6 +53,6 @@ generate_springer_book_files(specific_titles_list)
 
 # Acknowledgments
 
-This is an R version of the `springer_free_books` project available at https://github.com/alexgand/springer_free_books.
+This project draw inspiration from the `springer_free_books` project available at https://github.com/alexgand/springer_free_books.
 
 Thank you, Springer!
