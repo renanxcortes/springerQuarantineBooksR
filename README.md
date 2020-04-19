@@ -1,6 +1,6 @@
 # springerQuarantineBooksR: download all Springer books made available during the COVID-19 quarantine
 
-Para construir a imagem deste aplicativo, navegue até a pasta raiz dele e rode o seguinte comando:
+Intall the package and the following code:
 
 ```
 devtools::install_github("renanxcortes/springerQuarantineBooksR")
