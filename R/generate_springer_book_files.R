@@ -1,6 +1,6 @@
 # Generate all pdf's in the directories organized by book type
 
-generate_pdf_files <- function(springer_books_titles = NA, springer_table = NA) {
+generate_springer_book_files <- function(springer_books_titles = NA, springer_table = NA) {
 
 if (is.na(springer_table)) {
   books_list_url <- 'https://resource-cms.springernature.com/springer-cms/rest/v1/content/17858272/data/v4/'
