@@ -26,7 +26,7 @@ for (title in springer_books_titles) {
   if (!dir.exists(current_folder)) { dir.create(current_folder, recursive = T) }
   setwd(current_folder)
   tic('Time processed')
-  fecth_single_pdf(title, springer_table)
+  fetch_single_pdf(title, springer_table)
   toc()
   setwd(file.path('.', '..', '..'))
 

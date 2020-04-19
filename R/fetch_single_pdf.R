@@ -1,6 +1,6 @@
 # Function that fetchs the pdf file and saves it in the current directory
 
-fecth_single_pdf <- function(book_title, springer_table){
+fetch_single_pdf <- function(book_title, springer_table){
 
   file_sep <- .Platform$file.sep
 
