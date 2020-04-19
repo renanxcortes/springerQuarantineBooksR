@@ -16,7 +16,7 @@ i <- 1
 
 for (title in springer_books_titles) {
 
-  print(paste0('Processing... ', title, '(', i, ' out of ', n, ')'))
+  print(paste0('Processing... ', title, ' (', i, ' out of ', n, ')'))
 
   en_book_type <- springer_table %>%
     filter(`Book Title` == title) %>%
