@@ -43,6 +43,10 @@ specific_titles_list <- springer_table %>%
 generate_springer_book_files(specific_titles_list)
 ```
 
+## Repo Structure generated
+
+![](www/directory_org_example.png)
+
 # Acknowledgments
 
 This is an R version of the `springer_free_books` project available at https://github.com/alexgand/springer_free_books.
