@@ -1,10 +1,10 @@
-# springerQuarantineBooksR: download all Springer books made available during the COVID-19 quarantine
+# `springerQuarantineBooksR`: download all Springer books made available during the COVID-19 quarantine
 
 Intall the package and the following code:
 
 ```
 devtools::install_github("renanxcortes/springerQuarantineBooksR")
-library(springerQuarantineBoksR)
+library(springerQuarantineBooksR)
 
 setwd('path_of_your_choice')
 
@@ -13,4 +13,20 @@ generate_springer_book_files()
 toc()
 ```
 
-This is an R version of the https://github.com/alexgand/springer_free_books.
+If you'd like to download on Books related with Machine Learning, for example. You can run:
+
+```
+books_list_url <- 'https://resource-cms.springernature.com/springer-cms/rest/v1/content/17858272/data/v4/'
+GET(books_list_url, write_disk(tf <- tempfile(fileext = ".xlsx")))
+springer_table <- read_excel(tf)
+
+specific_title_list <- springer_table %>% 
+  filter(str_detect(`Book Title`, 'Data Science')) %>% 
+  pull(`Book Title`)
+
+generate_springer_book_files(specific_title_list)
+```
+
+# Acknowledgments
+
+This is an R version of the `springer_free_books` project available at https://github.com/alexgand/springer_free_books.
