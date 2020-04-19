@@ -10,9 +10,9 @@ License: GPL-2
 Encoding: UTF-8
 LazyData: true
 Imports: 
-    readxl,
-    httr,
-    stringr,
+	readxl,
+	httr,
+	stringr,
 	dplyr,
 	magrittr,
 	tictoc
