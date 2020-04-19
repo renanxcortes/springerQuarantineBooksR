@@ -27,6 +27,10 @@ generate_springer_book_files()
 toc()
 ```
 
+You'll get an output just like below:
+
+![](www/processing_example.png)
+
 ## Download only specific books:
 
 If you'd like to download only Books related with "Data Science" on the title, for example, you can run:

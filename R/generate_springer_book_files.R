@@ -14,6 +14,8 @@ n <- length(springer_books_titles)
 
 i <- 1
 
+warning("Downloading title latest editions.")
+
 for (title in springer_books_titles) {
 
   print(paste0('Processing... ', title, ' (', i, ' out of ', n, ')'))

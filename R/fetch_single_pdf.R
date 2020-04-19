@@ -9,7 +9,7 @@ fetch_single_pdf <- function(book_title, springer_table){
     arrange(desc(`Copyright Year`)) %>%
     slice(1)
 
-  author <- aux$Author
+  edition <- aux$Edition
   en_book_type <- aux$`English Package Name`
 
   download_url <- aux$OpenURL %>%
@@ -21,7 +21,7 @@ fetch_single_pdf <- function(book_title, springer_table){
 
   pdf_file = GET(download_url)
 
-  write.filename = file(paste0(book_title, " - ", author, ".pdf"), "wb")
+  write.filename = file(paste0(book_title, " - ", edition, ".pdf"), "wb")
   writeBin(pdf_file$content, write.filename)
   close(write.filename)
 
