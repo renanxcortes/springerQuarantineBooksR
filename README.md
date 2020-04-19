@@ -31,6 +31,10 @@ You'll get an output similar like below:
 
 ![](www/processing_example.png)
 
+## Repo Structure generated
+
+![](www/directory_org_example.png)
+
 ## Download only specific books:
 
 For example, if you'd like to download only books with "Data Science" on the title, you can run:
@@ -47,9 +51,7 @@ specific_titles_list <- springer_table %>%
 generate_springer_book_files(specific_titles_list)
 ```
 
-## Repo Structure generated
 
-![](www/directory_org_example.png)
 
 # Acknowledgments
 
