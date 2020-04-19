@@ -13,7 +13,7 @@ generate_springer_book_files()
 toc()
 ```
 
-If you'd like to download on Books related with Machine Learning, for example. You can run:
+If you'd like to download only Books related with "Data Science" on the title, for example, you can run:
 
 ```
 books_list_url <- 'https://resource-cms.springernature.com/springer-cms/rest/v1/content/17858272/data/v4/'
