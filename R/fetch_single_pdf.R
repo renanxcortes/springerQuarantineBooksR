@@ -5,7 +5,9 @@ fecth_single_pdf <- function(book_title, springer_table){
   file_sep <- .Platform$file.sep
 
   aux <- springer_table %>%
-    filter(`Book Title` == book_title)
+    filter(`Book Title` == book_title) %>%
+    arrange(desc(`Copyright Year`)) %>%
+    slice(1)
 
   author <- aux$Author
   en_book_type <- aux$`English Package Name`
