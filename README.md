@@ -27,7 +27,7 @@ generate_springer_book_files()
 toc()
 ```
 
-## Download specific books only:
+## Download only specific books:
 
 If you'd like to download only Books related with "Data Science" on the title, for example, you can run:
 
@@ -36,15 +36,15 @@ books_list_url <- 'https://resource-cms.springernature.com/springer-cms/rest/v1/
 GET(books_list_url, write_disk(tf <- tempfile(fileext = ".xlsx")))
 springer_table <- read_excel(tf)
 
-specific_title_list <- springer_table %>% 
+specific_titles_list <- springer_table %>% 
   filter(str_detect(`Book Title`, 'Data Science')) %>% 
   pull(`Book Title`)
 
-generate_springer_book_files(specific_title_list)
+generate_springer_book_files(specific_titles_list)
 ```
 
 # Acknowledgments
 
 This is an R version of the `springer_free_books` project available at https://github.com/alexgand/springer_free_books.
 
-Thank you Springer!
+Thank you, Springer!
