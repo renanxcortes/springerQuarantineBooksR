@@ -1,6 +1,6 @@
 # `springerQuarantineBooksR`: download all Springer books made available during the COVID-19 quarantine
 
-**A range of essential textbooks from all disciplines will be freely available to support higher education institutions worldwide**
+**"A range of essential textbooks from all disciplines will be freely available to support higher education institutions worldwide"**
 
 Source: https://group.springernature.com/gp/group/media/press-releases/freely-accessible-textbook-initiative-for-educators-and-students/17858180?utm_medium=social&utm_content=organic&utm_source=facebook&utm_campaign=SpringerNature_&sf232256230=1
 
