@@ -27,7 +27,7 @@ generate_springer_book_files()
 toc()
 ```
 
-You'll get an output similar like below:
+You'll get an output similar like this:
 
 ![](www/processing_example.png)
 
