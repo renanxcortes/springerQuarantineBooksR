@@ -27,13 +27,13 @@ generate_springer_book_files()
 toc()
 ```
 
-You'll get an output just like below:
+You'll get an output similar like below:
 
 ![](www/processing_example.png)
 
 ## Download only specific books:
 
-If you'd like to download only Books related with "Data Science" on the title, for example, you can run:
+For example, if you'd like to download only books with "Data Science" on the title, you can run:
 
 ```
 books_list_url <- 'https://resource-cms.springernature.com/springer-cms/rest/v1/content/17858272/data/v4/'
