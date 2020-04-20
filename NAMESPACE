@@ -2,3 +2,4 @@
 
 export(download_springer_book)
 export(download_springer_book_files)
+export(springer_book_categories)

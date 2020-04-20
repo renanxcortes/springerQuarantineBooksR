@@ -69,7 +69,7 @@ download_springer_book_files <- function(springer_books_titles = NULL,
 
   }
 
-  print("Downloading title latest editions.")
+  message("Downloading title latest editions.")
 
   if(parallel) {
 
