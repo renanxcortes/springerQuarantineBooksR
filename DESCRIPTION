@@ -14,11 +14,16 @@ Depends:
 	stringr,
 	dplyr,
 	magrittr,
-	tictoc
+	purrr,
+	future,
+	furrr
 Imports: 
 	readxl,
 	httr,
 	stringr,
 	dplyr,
 	magrittr,
-	tictoc
+	purrr,
+	future,
+	furrr
+RoxygenNote: 7.0.2

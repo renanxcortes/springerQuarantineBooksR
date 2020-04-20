@@ -1,7 +1,28 @@
-# Function that fetchs the pdf file and saves it in the current directory
-
+#' Download a single book from Springer open book repository
+#'
+#' \code{download_springer_book} Get's a book name, and a default springer table that will be used to get the book's url.
+#' Also, it saves the pdf in a specific destination folder mentioned in the function's arguments.
+#'
+#'
+#' @param book The name of the book that will be downloaded, it has to be compliant to the springer table that will be provided.
+#' @param destination_folder A folder/path that will be used to save the files.
+#' @param springer_table The default table exported from springer website, if left empty, will source the provided table in web.
+#'
+#' @return The function will download the pdf of the book, export it at the provided destination folder, and return
+#' the time it took to download the file
+#'
+#' @export
+#'
+#' @examples
+#'
+#' \dontrun{
+#' download_springer_book(book = "Fundamentals of Power Electronics")
+#' }
+#'
 download_springer_book <-
   function(book, destination_folder = 'books', springer_table = NULL) {
+
+    t1 <- Sys.time()
 
     `%>%` <- magrittr::`%>%`
 
@@ -61,5 +82,10 @@ download_springer_book <-
       )
     )
 
-  }
+    t2 <- Sys.time()
 
+    return_time <- t2 - t1
+
+    return(return_time)
+
+  }
