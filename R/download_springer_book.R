@@ -45,14 +45,18 @@ download_springer_book <-
 
     edition <-
       book_info %>%
-      dplyr::pull(edition)
+      dplyr::pull(edition) %>%
+      unique()
 
     en_book_type <-
       book_info %>%
-      dplyr::pull(english_package_name)
+      dplyr::pull(english_package_name) %>%
+      unique()
 
     clean_book_title <-
       gsub('/', '-', book)
+
+    message(paste0('Downloading ', clean_book_title))
 
     dir.create(
       path = sprintf('%s/%s',
@@ -62,41 +66,93 @@ download_springer_book <-
       recursive = TRUE
     )
 
-    if(file.exists(sprintf(
-      '%s/%s/%s - %s.pdf',
-      destination_folder,
-      en_book_type,
-      clean_book_title,
-      edition))) {
+    if(nrow(book_info) == 1) {
 
-      message('File already exists, skipping book download')
-
-      return()
-
-    } else {
-
-      download_url <-
-        book_info %>%
-        dplyr::pull(open_url) %>%
-        httr::GET() %>%
-        magrittr::extract2('url') %>%
-        stringr::str_replace('book', paste0('content', '/', 'pdf')) %>%
-        stringr::str_replace('%2F', '/') %>%
-        paste0('.pdf')
-
-      download.file(
-        url = download_url,
-        destfile = sprintf(
+      if(file.exists(
+        sprintf(
           '%s/%s/%s - %s.pdf',
           destination_folder,
           en_book_type,
           clean_book_title,
-          edition
-        ),
-        quiet = TRUE
-      )
+          edition)
+      )) {
 
-      Sys.sleep(1)
+        message('File already exists, skipping book download')
+
+        return()
+
+      } else {
+
+        download_url <-
+          book_info %>%
+          dplyr::pull(open_url) %>%
+          httr::GET() %>%
+          magrittr::extract2('url') %>%
+          stringr::str_replace('book', paste0('content', '/', 'pdf')) %>%
+          stringr::str_replace('%2F', '/') %>%
+          paste0('.pdf')
+
+        download.file(
+          url = download_url,
+          destfile = sprintf(
+            '%s/%s/%s - %s.pdf',
+            destination_folder,
+            en_book_type,
+            clean_book_title,
+            edition
+          ),
+          quiet = TRUE
+        )
+
+        Sys.sleep(1)
+
+      }
+
+    } else {
+
+      list_of_downloads <-
+        book_info %>%
+        dplyr::pull(open_url)
+
+      purrr::map(
+        list_of_downloads,
+        function(book_url) {
+
+          url_info <-
+            book_url %>%
+            httr::GET()
+
+          download_url <-
+            url_info %>%
+            magrittr::extract2('url') %>%
+            stringr::str_replace('book', paste0('content', '/', 'pdf')) %>%
+            stringr::str_replace('%2F', '/') %>%
+            paste0('.pdf')
+
+          subtitle <-
+            url_info %>%
+            httr::content() %>%
+            rvest::html_nodes(xpath = '//*[@id="main-content"]/article[1]/div/div/div[1]/div/div/div[1]/div[2]/h2') %>%
+            rvest::html_text()
+
+          download.file(
+            url = download_url,
+            destfile = sprintf(
+              '%s/%s/%s - %s - %s.pdf',
+              destination_folder,
+              en_book_type,
+              clean_book_title,
+              subtitle,
+              edition
+            ),
+            quiet = TRUE
+          )
+
+          Sys.sleep(1)
+
+        }
+
+      )
 
     }
 
@@ -104,7 +160,6 @@ download_springer_book <-
 
     return_time <- t2 - t1
 
-    message(paste0('Book: ', clean_book_title))
     message(paste0('Time Elapsed: ', format(return_time, digits = 2)))
 
     return(return_time)
