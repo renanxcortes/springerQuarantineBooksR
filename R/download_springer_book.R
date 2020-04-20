@@ -79,7 +79,8 @@ download_springer_book <-
         en_book_type,
         clean_book_title,
         edition
-      )
+      ),
+      quiet = TRUE
     )
 
     t2 <- Sys.time()
