@@ -88,7 +88,7 @@ download_springer_book_files <- function(springer_books_titles = NULL,
 
   } else {
 
-    purrr::walk(
+    purrr::map(
       springer_books_to_download,
       ~springerQuarantineBooksR::download_springer_book(
         book = .x,

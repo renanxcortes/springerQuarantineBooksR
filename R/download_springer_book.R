@@ -51,6 +51,9 @@ download_springer_book <-
       book_info %>%
       dplyr::pull(english_package_name)
 
+    clean_book_title <-
+      gsub('/', '-', book)
+
     dir.create(
       path = sprintf('%s/%s',
                      destination_folder,
@@ -59,33 +62,50 @@ download_springer_book <-
       recursive = TRUE
     )
 
-    download_url <-
-      book_info %>%
-      dplyr::pull(open_url) %>%
-      httr::GET() %>%
-      magrittr::extract2('url') %>%
-      stringr::str_replace('book', paste0('content', '/', 'pdf')) %>%
-      stringr::str_replace('%2F', '/') %>%
-      paste0('.pdf')
+    if(file.exists(sprintf(
+      '%s/%s/%s - %s.pdf',
+      destination_folder,
+      en_book_type,
+      clean_book_title,
+      edition))) {
 
-    clean_book_title <-
-      gsub('/', '-', book)
+      message('File already exists, skipping book download')
 
-    download.file(
-      url = download_url,
-      destfile = sprintf(
-        '%s/%s/%s - %s.pdf',
-        destination_folder,
-        en_book_type,
-        clean_book_title,
-        edition
-      ),
-      quiet = TRUE
-    )
+      return()
+
+    } else {
+
+      download_url <-
+        book_info %>%
+        dplyr::pull(open_url) %>%
+        httr::GET() %>%
+        magrittr::extract2('url') %>%
+        stringr::str_replace('book', paste0('content', '/', 'pdf')) %>%
+        stringr::str_replace('%2F', '/') %>%
+        paste0('.pdf')
+
+      download.file(
+        url = download_url,
+        destfile = sprintf(
+          '%s/%s/%s - %s.pdf',
+          destination_folder,
+          en_book_type,
+          clean_book_title,
+          edition
+        ),
+        quiet = TRUE
+      )
+
+      Sys.sleep(1)
+
+    }
 
     t2 <- Sys.time()
 
     return_time <- t2 - t1
+
+    message(paste0('Book: ', clean_book_title))
+    message(paste0('Time Elapsed: ', format(return_time, digits = 2)))
 
     return(return_time)
 
