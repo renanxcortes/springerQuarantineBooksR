@@ -20,7 +20,7 @@
 #' }
 #'
 download_springer_book <-
-  function(book, destination_folder = 'books', springer_table = NULL) {
+  function(book, destination_folder = 'springer_quarantine_books', springer_table = NULL) {
 
     t1 <- Sys.time()
 

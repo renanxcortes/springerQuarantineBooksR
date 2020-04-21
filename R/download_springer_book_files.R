@@ -28,7 +28,7 @@
 download_springer_book_files <- function(springer_books_titles = NULL,
                                          springer_book_group = NULL,
                                          springer_table = NULL,
-                                         destination_folder = 'books',
+                                         destination_folder = 'springer_quarantine_books',
                                          parallel = FALSE) {
 
   `%>%` <- magrittr::`%>%`
