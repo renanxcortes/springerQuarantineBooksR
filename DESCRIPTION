@@ -16,7 +16,10 @@ Depends:
 	magrittr,
 	purrr,
 	future,
-	furrr
+	furrr,
+	janitor,
+	readr,
+	rvest
 Imports: 
 	readxl,
 	httr,
@@ -25,5 +28,8 @@ Imports:
 	magrittr,
 	purrr,
 	future,
-	furrr
+	furrr,
+	janitor,
+	readr,
+	rvest
 RoxygenNote: 7.0.2
