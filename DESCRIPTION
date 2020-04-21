@@ -1,6 +1,6 @@
 Package: springerQuarantineBooksR
 Type: Package
-Title: What the Package Does (Title Case)
+Title: springerQuarantineBooksR - download all Springer books made available during the COVID-19 quarantine
 Version: 0.1.0
 Author: Renan Xavier Cortes
 Maintainer: Renan Xavier Cortes <renanxcortes@gmail.com>
