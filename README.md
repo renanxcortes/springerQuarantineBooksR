@@ -21,15 +21,18 @@ library(springerQuarantineBooksR)
 
 ```
 setwd('path_of_your_choice')
-
-tic('Total time: ')
 download_springer_book_files()
-toc()
 ```
 
 You'll get an output similar like this:
 
 ![](www/processing_example.png)
+
+You can also download the files in parallel:
+
+```
+download_springer_book_files(parallel = TRUE)
+```
 
 ## Repo Structure generated
 
