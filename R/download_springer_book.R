@@ -163,7 +163,7 @@ download_springer_book <-
 
     return_time <- t2 - t1
 
-    message(paste0('Time Elapsed for ', clean_book_title, ': ', format(return_time, digits = 2)))
+    message(paste0('Time Elapsed: ', format(return_time, digits = 2)))
 
     return(return_time)
 
