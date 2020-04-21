@@ -7,6 +7,8 @@
 #'
 #' @return The return of this function is a tibble containing Springer categories
 #'
+#' @importFrom rlang .data
+#'
 #' @export
 #'
 #' @examples
@@ -30,7 +32,7 @@ springer_book_categories <-
 
     tbl_return <-
       springer_table %>%
-      dplyr::select(categories = english_package_name) %>%
+      dplyr::select(categories = .data$english_package_name) %>%
       dplyr::distinct()
 
     return(tbl_return)

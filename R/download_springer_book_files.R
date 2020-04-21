@@ -17,6 +17,9 @@
 #' @return The function will download the pdf of the books listed/provided, export it at the provided destination folder, and there are no
 #' returns for this function
 #'
+#' @importFrom utils download.file
+#' @importFrom rlang .data
+#'
 #' @export
 #'
 #' @examples
@@ -49,7 +52,7 @@ download_springer_book_files <- function(springer_books_titles = NULL,
 
     springer_books_to_download <-
       springer_table %>%
-      dplyr::pull(book_title) %>%
+      dplyr::pull(.data$book_title) %>%
       unique()
 
   } else if (is.null(springer_books_titles) & is.null(springer_book_group)) {
@@ -57,9 +60,9 @@ download_springer_book_files <- function(springer_books_titles = NULL,
     springer_books_to_download <-
       springer_table %>%
       dplyr::filter(
-        english_package_name %in% springer_book_group
+        .data$english_package_name %in% springer_book_group
       ) %>%
-      dplyr::pull(book_title) %>%
+      dplyr::pull(.data$book_title) %>%
       unique()
 
   } else {

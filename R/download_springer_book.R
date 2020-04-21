@@ -11,6 +11,9 @@
 #' @return The function will download the pdf of the book, export it at the provided destination folder, and return
 #' the time it took to download the file
 #'
+#' @importFrom utils download.file
+#' @importFrom rlang .data
+#'
 #' @export
 #'
 #' @examples
@@ -40,17 +43,17 @@ download_springer_book <-
 
     book_info <-
       springer_table %>%
-      dplyr::filter(book_title == book) %>%
-      dplyr::filter(copyright_year == max(copyright_year))
+      dplyr::filter(.data$book_title == book) %>%
+      dplyr::filter(.data$copyright_year == max(.data$copyright_year))
 
     edition <-
       book_info %>%
-      dplyr::pull(edition) %>%
+      dplyr::pull(.data$edition) %>%
       unique()
 
     en_book_type <-
       book_info %>%
-      dplyr::pull(english_package_name) %>%
+      dplyr::pull(.data$english_package_name) %>%
       unique()
 
     clean_book_title <-
@@ -85,7 +88,7 @@ download_springer_book <-
 
         download_url <-
           book_info %>%
-          dplyr::pull(open_url) %>%
+          dplyr::pull(.data$open_url) %>%
           httr::GET() %>%
           magrittr::extract2('url') %>%
           stringr::str_replace('book', paste0('content', '/', 'pdf')) %>%
@@ -112,7 +115,7 @@ download_springer_book <-
 
       list_of_downloads <-
         book_info %>%
-        dplyr::pull(open_url)
+        dplyr::pull(.data$open_url)
 
       purrr::map(
         list_of_downloads,

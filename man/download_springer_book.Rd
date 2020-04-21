@@ -6,7 +6,7 @@
 \usage{
 download_springer_book(
   book,
-  destination_folder = "books",
+  destination_folder = "springer_quarantine_books",
   springer_table = NULL
 )
 }
