@@ -26,7 +26,7 @@ download_springer_book_files()
 
 You'll get an output similar like this:
 
-![](www/processing_example.png)
+![](inst/extdata/processing_example.png)
 
 You can also download the files in parallel:
 
@@ -38,7 +38,7 @@ download_springer_book_files(parallel = TRUE)
 
 It will be generated a repo named `springer_quarantine_books` with a specific structure:
 
-![](www/directory_org_example.png)
+![](inst/extdata/directory_org_example.png)
 
 ## Download table of Springer books available:
 
