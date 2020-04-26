@@ -38,10 +38,8 @@ It will be generated a repo named `springer_quarantine_books` with a specific st
 
 For example, if you'd like to download only books with "Data Science" on the title, you can run:
 
-```
-books_list_url <- 'https://resource-cms.springernature.com/springer-cms/rest/v1/content/17858272/data/v4/'
-GET(books_list_url, write_disk(tf <- tempfile(fileext = ".xlsx")))	
-springer_table <- read_excel(tf)
+```	
+springer_table <- download_springer_table()
 
 specific_titles_list <- springer_table %>% 
   filter(str_detect(`Book Title`, 'Data Science')) %>% 
