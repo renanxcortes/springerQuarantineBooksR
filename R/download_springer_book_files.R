@@ -29,7 +29,7 @@ download_springer_book_files <- function(springer_books_titles = NA, springer_ta
     if (!dir.exists(current_folder)) { dir.create(current_folder, recursive = T) }
     setwd(current_folder)
     tic('Time processed')
-    fetch_single_pdf(title, springer_table)
+    download_springer_book(title, springer_table)
     toc()
     setwd(file.path('.', '..', '..'))
 
