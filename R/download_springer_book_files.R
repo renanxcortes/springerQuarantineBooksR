@@ -3,9 +3,7 @@
 download_springer_book_files <- function(springer_books_titles = NA, springer_table = NA) {
 
   if (is.na(springer_table)) {
-    books_list_url <- 'https://resource-cms.springernature.com/springer-cms/rest/v1/content/17858272/data/v4/'
-    GET(books_list_url, write_disk(tf <- tempfile(fileext = ".xlsx")))
-    springer_table <- read_excel(tf)
+    springer_table <- download_springer_table()
   }
 
   if (is.na(springer_books_titles)) { springer_books_titles <- springer_table$`Book Title` %>% unique()}
