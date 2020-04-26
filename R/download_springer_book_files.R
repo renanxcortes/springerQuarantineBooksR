@@ -1,105 +1,39 @@
-#' Downloads multiple springer books, allowing filters of book groups
-#'
-#' \code{download_springer_book_files} This function can receive many arguments that will be used to download books from
-#' the Springer open repository, it can receive a list of the names of the books that the user want to download,
-#' it can receive a specific group of books to be downloaded, such as engineering, psycology, etc. (the list of available categories
-#' can be found by running the `springer_book_categories()` function), if provided, it'll use a specific springer table to source
-#' the url and book specifications, it also can receive a destination folder, and an argument that will allow the user to
-#' run this in parallel through future.
-#'
-#' @param springer_books_titles A list of books to be downloaded, if left empty, it'll download every book.
-#' @param springer_book_group A list of groups which to download books from (the default list can be found at `springer_book_categories()`),
-#' if left empty, it'll download books from every category
-#' @param springer_table The default table exported from springer website, if left empty, will source the provided table in web.
-#' @param destination_folder A folder/path that will be used to save the files.
-#' @param parallel A boolean which the user can choose to run the supplied function in parallel or not.
-#'
-#' @return The function will download the pdf of the books listed/provided, export it at the provided destination folder, and there are no
-#' returns for this function
-#'
-#' @importFrom utils download.file
-#' @importFrom rlang .data
-#'
-#' @export
-#'
-#' @examples
-#'
-#' \dontrun{
-#' download_springer_book_files()
-#' }
-#'
-download_springer_book_files <- function(springer_books_titles = NULL,
-                                         springer_book_group = NULL,
-                                         springer_table = NULL,
-                                         destination_folder = 'springer_quarantine_books',
-                                         parallel = FALSE) {
+# Generate all pdf's in the directories organized by book type
 
-  `%>%` <- magrittr::`%>%`
+download_springer_book_files <- function(springer_books_titles = NA, springer_table = NA) {
 
-  if (is.null(springer_table)) {
-
+  if (is.na(springer_table)) {
     books_list_url <- 'https://resource-cms.springernature.com/springer-cms/rest/v1/content/17858272/data/v4/'
-
-    httr::GET(books_list_url, httr::write_disk(tf <- tempfile(fileext = ".xlsx")))
-
-    springer_table <-
-      readxl::read_excel(tf) %>%
-      janitor::clean_names()
-
+    GET(books_list_url, write_disk(tf <- tempfile(fileext = ".xlsx")))
+    springer_table <- read_excel(tf)
   }
 
-  if (is.null(springer_books_titles) & is.null(springer_book_group)) {
+  if (is.na(springer_books_titles)) { springer_books_titles <- springer_table$`Book Title` %>% unique()}
 
-    springer_books_to_download <-
-      springer_table %>%
-      dplyr::pull(.data$book_title) %>%
+  n <- length(springer_books_titles)
+
+  i <- 1
+
+  print("Downloading title latest editions.")
+
+  for (title in springer_books_titles) {
+
+    print(paste0('Processing... ', title, ' (', i, ' out of ', n, ')'))
+
+    en_book_type <- springer_table %>%
+      filter(`Book Title` == title) %>%
+      pull(`English Package Name`) %>%
       unique()
 
-  } else if (is.null(springer_books_titles) & is.null(springer_book_group)) {
+    current_folder = file.path('springer_quarantine_books', en_book_type)
+    if (!dir.exists(current_folder)) { dir.create(current_folder, recursive = T) }
+    setwd(current_folder)
+    tic('Time processed')
+    fetch_single_pdf(title, springer_table)
+    toc()
+    setwd(file.path('.', '..', '..'))
 
-    springer_books_to_download <-
-      springer_table %>%
-      dplyr::filter(
-        .data$english_package_name %in% springer_book_group
-      ) %>%
-      dplyr::pull(.data$book_title) %>%
-      unique()
-
-  } else {
-
-    springer_books_to_download <-
-      springer_books_titles
-
-  }
-
-  message("Downloading title latest editions.")
-
-  if(parallel) {
-
-    future::plan(future::multisession)
-
-    furrr::future_map(
-      springer_books_to_download,
-      ~springerQuarantineBooksR::download_springer_book(
-        book = .x,
-        destination_folder = destination_folder,
-        springer_table = springer_table
-      )
-    )
-
-    future::plan(future::sequential)
-
-  } else {
-
-    purrr::map(
-      springer_books_to_download,
-      ~springerQuarantineBooksR::download_springer_book(
-        book = .x,
-        destination_folder = destination_folder,
-        springer_table = springer_table
-      )
-
-    )
+    i <- i + 1
 
   }
 

@@ -28,32 +28,20 @@ You'll get an output similar like this:
 
 ![](inst/extdata/processing_example.png)
 
-You can also download the files in parallel:
-
-```
-download_springer_book_files(parallel = TRUE)
-```
-
 ## Repo Structure generated
 
 It will be generated a repo named `springer_quarantine_books` with a specific structure:
 
 ![](inst/extdata/directory_org_example.png)
 
-## Download table of Springer books available:
-
-If the user wants to load into an R session the table contaning all the titles available by Springer, there is the `download_springer_table` function.
-
-```
-springer_table <- download_springer_table()
-```
-
 ## Download only specific books:
 
 For example, if you'd like to download only books with "Data Science" on the title, you can run:
 
 ```
-springer_table <- download_springer_table()
+books_list_url <- 'https://resource-cms.springernature.com/springer-cms/rest/v1/content/17858272/data/v4/'	springer_table <- download_springer_table()
+GET(books_list_url, write_disk(tf <- tempfile(fileext = ".xlsx")))	
+springer_table <- read_excel(tf)
 
 specific_titles_list <- springer_table %>% 
   filter(str_detect(`Book Title`, 'Data Science')) %>% 
@@ -61,10 +49,6 @@ specific_titles_list <- springer_table %>%
 
 download_springer_book_files(springer_books_titles = specific_titles_list)
 ```
-
-## Download the list of book categories available:
-
-In the `download_springer_book_files` function, one argument is the book category that the user might want to download. To know what are the categories available to be used in this argument, the user can run the `springer_book_categories` function, that will return a tibble containing that information.
 
 # Acknowledgments
 
