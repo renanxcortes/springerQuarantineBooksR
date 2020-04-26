@@ -1,6 +1,6 @@
 # Generate all pdf's in the directories organized by book type
 
-download_springer_book_files <- function(springer_books_titles = NA, springer_table = NA) {
+download_springer_book_files <- function(springer_books_titles = NA, springer_table = NA, destination_folder = 'springer_quarantine_books') {
 
   if (is.na(springer_table)) {
     springer_table <- download_springer_table()
@@ -23,7 +23,7 @@ download_springer_book_files <- function(springer_books_titles = NA, springer_ta
       pull(`English Package Name`) %>%
       unique()
 
-    current_folder = file.path('springer_quarantine_books', en_book_type)
+    current_folder = file.path(destination_folder, en_book_type)
     if (!dir.exists(current_folder)) { dir.create(current_folder, recursive = T) }
     setwd(current_folder)
     tic('Time processed')
