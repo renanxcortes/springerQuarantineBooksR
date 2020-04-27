@@ -1,11 +1,11 @@
 # Function that fetchs the pdf file and saves it in the current directory
 
-download_springer_book <- function(book_title, springer_table){
+download_springer_book <- function(book_spec_title, springer_table){
 
   file_sep <- .Platform$file.sep
 
   aux <- springer_table %>%
-    filter(book_title == book_title) %>%
+    filter(book_title == book_spec_title) %>%
     arrange(desc(copyright_year)) %>%
     slice(1)
 
@@ -21,7 +21,7 @@ download_springer_book <- function(book_title, springer_table){
 
   pdf_file = GET(download_url)
 
-  clean_book_title <- str_replace(book_title, '/', '-') # Avoiding '/' special character in filename
+  clean_book_title <- str_replace(book_spec_title, '/', '-') # Avoiding '/' special character in filename
 
   write.filename = file(paste0(clean_book_title, " - ", edition, ".pdf"), "wb")
   writeBin(pdf_file$content, write.filename)
