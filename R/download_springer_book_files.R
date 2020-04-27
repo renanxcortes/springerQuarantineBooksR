@@ -22,8 +22,8 @@ download_springer_book_files <- function(springer_books_titles = NA, springer_ta
     print(paste0('Processing... ', title, ' (', i, ' out of ', n, ')'))
 
     en_book_type <- springer_table %>%
-      filter(`Book Title` == title) %>%
-      pull(`English Package Name`) %>%
+      filter(book_title == title) %>%
+      pull(english_package_name) %>%
       unique()
 
     current_folder = file.path(destination_folder, en_book_type)
