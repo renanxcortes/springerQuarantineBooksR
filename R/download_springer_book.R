@@ -12,7 +12,7 @@ download_springer_book <- function(book_title, springer_table){
   edition <- aux$edition
   en_book_type <- aux$english_package_name
 
-  download_url <- aux$OpenURL %>%
+  download_url <- aux$open_url %>%
     GET() %>%
     extract2('url') %>%
     str_replace('book', paste0('content', file_sep, 'pdf')) %>%
