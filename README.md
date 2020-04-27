@@ -42,7 +42,7 @@ For example, if you'd like to download only books with "Data Science" on the tit
 springer_table <- download_springer_table()
 
 specific_titles_list <- springer_table %>% 
-  filter(str_detect(`Book Title`, 'Data Science')) %>% 
+  filter(str_detect(book_title, 'Data Science')) %>% 
   pull(`Book Title`)
 
 download_springer_book_files(springer_books_titles = specific_titles_list)

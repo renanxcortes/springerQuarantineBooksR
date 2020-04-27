@@ -7,7 +7,8 @@ download_springer_table <-
 
     httr::GET(books_list_url, httr::write_disk(tf <- tempfile(fileext = ".xlsx")))
 
-    springer_table <- readxl::read_excel(tf)
+    springer_table <- readxl::read_excel(tf) %>%
+      clean_names()
 
     return(springer_table)
 

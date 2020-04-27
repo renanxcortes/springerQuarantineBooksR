@@ -5,12 +5,12 @@ download_springer_book <- function(book_title, springer_table){
   file_sep <- .Platform$file.sep
 
   aux <- springer_table %>%
-    filter(`Book Title` == book_title) %>%
-    arrange(desc(`Copyright Year`)) %>%
+    filter(book_title == book_title) %>%
+    arrange(desc(copyright_year)) %>%
     slice(1)
 
-  edition <- aux$Edition
-  en_book_type <- aux$`English Package Name`
+  edition <- aux$edition
+  en_book_type <- aux$english_package_name
 
   download_url <- aux$OpenURL %>%
     GET() %>%

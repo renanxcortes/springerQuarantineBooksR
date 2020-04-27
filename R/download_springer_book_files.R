@@ -6,7 +6,10 @@ download_springer_book_files <- function(springer_books_titles = NA, springer_ta
     springer_table <- download_springer_table()
   }
 
-  if (is.na(springer_books_titles)) { springer_books_titles <- springer_table$`Book Title` %>% unique()}
+  if (is.na(springer_books_titles)) { springer_books_titles <- springer_table %>%
+    clean_names() %>%
+    select(book_title) %>%
+    unique()}
 
   n <- length(springer_books_titles)
 

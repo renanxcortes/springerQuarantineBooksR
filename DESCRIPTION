@@ -14,11 +14,13 @@ Depends:
 	stringr,
 	dplyr,
 	magrittr,
-	tictoc
+	tictoc,
+	janitor
 Imports:
 	readxl,
 	httr,
 	stringr,
 	dplyr,
 	magrittr,
-	tictoc
+	tictoc,
+	janitor
