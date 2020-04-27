@@ -43,7 +43,7 @@ springer_table <- download_springer_table()
 
 specific_titles_list <- springer_table %>% 
   filter(str_detect(book_title, 'Data Science')) %>% 
-  pull(`Book Title`)
+  pull(book_title)
 
 download_springer_book_files(springer_books_titles = specific_titles_list)
 ```
