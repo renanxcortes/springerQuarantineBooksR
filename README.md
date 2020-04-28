@@ -48,6 +48,12 @@ specific_titles_list <- springer_table %>%
 download_springer_book_files(springer_books_titles = specific_titles_list)
 ```
 
+## Download specific file types
+Available options are 'pdf', 'epub' and 'both'. Default is pdf.
+```
+download_springer_book_files(filetype = 'both')
+```
+
 # Acknowledgments
 
 This project draw inspiration from the `springer_free_books` project available at https://github.com/alexgand/springer_free_books.
