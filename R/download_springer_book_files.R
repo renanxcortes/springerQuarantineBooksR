@@ -1,5 +1,8 @@
-# Generate all pdf's in the directories organized by book type
-
+#' Generate all pdf's in the directories organized by book type
+#'
+#' @param springer_book_titles character vector of books to download. If not specified, all books will be downloaded.
+#' @param springer_table table of available books to download.
+#' @param destination_folder folder to save the books to.
 download_springer_book_files <- function(springer_books_titles = NA, springer_table = NA, destination_folder = 'springer_quarantine_books') {
 
   if (is.na(springer_table)) {
@@ -26,14 +29,12 @@ download_springer_book_files <- function(springer_books_titles = NA, springer_ta
       pull(english_package_name) %>%
       unique()
 
-    current_folder = file.path(destination_folder, en_book_type)
+    current_folder <- file.path(destination_folder, en_book_type)
     if (!dir.exists(current_folder)) { dir.create(current_folder, recursive = T) }
-    setwd(current_folder)
     tic('Time processed')
-    springerQuarantineBooksR::download_springer_book(title, springer_table)
+    springerQuarantineBooksR::download_springer_book(title, springer_table, dest_dir = current_folder)
     toc()
-    setwd(file.path('.', '..', '..'))
-
+    
     i <- i + 1
 
   }
