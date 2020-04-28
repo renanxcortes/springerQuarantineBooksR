@@ -1,6 +1,6 @@
 # Generate all pdf's in the directories organized by book type
 
-download_springer_book_files <- function(springer_books_titles = NA, springer_table = NA, destination_folder = 'springer_quarantine_books') {
+download_springer_book_files <- function(springer_books_titles = NA, springer_table = NA, destination_folder = 'springer_quarantine_books', filetype = 'pdf') {
 
   if (is.na(springer_table)) {
     springer_table <- springerQuarantineBooksR::download_springer_table()
@@ -30,7 +30,13 @@ download_springer_book_files <- function(springer_books_titles = NA, springer_ta
     if (!dir.exists(current_folder)) { dir.create(current_folder, recursive = T) }
     setwd(current_folder)
     tic('Time processed')
-    springerQuarantineBooksR::download_springer_book(title, springer_table)
+    if(filetype == 'pdf' || filetype == 'epub') {
+      springerQuarantineBooksR::download_springer_book(title, springer_table, filetype)
+    }
+    else if (filetype == 'both') {
+      springerQuarantineBooksR::download_springer_book(title, springer_table, 'pdf')
+      springerQuarantineBooksR::download_springer_book(title, springer_table, 'epub')
+    }
     toc()
     setwd(file.path('.', '..', '..'))
 
