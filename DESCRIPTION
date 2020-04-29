@@ -1,26 +1,22 @@
-Package: springerQuarantineBooksR
 Type: Package
-Title: springerQuarantineBooksR - Download all Springer Books Made Available During the COVID-19 Quarantine
+Package: springerQuarantineBooksR
+Title: springerQuarantineBooksR - Download all Springer Books
+    Made Available During the COVID-19 Quarantine
 Version: 0.1.0
 Author: Renan Xavier Cortes, Luis Henrique Zanandrea Paese
 Maintainer: Renan Xavier Cortes <renanxcortes@gmail.com>
-Description: Download all Springer books available for free during the COVID-19 quarantine.
+Description: Download all Springer books available for free
+    during the COVID-19 quarantine.
 License: GPL-2
+Imports: 
+    dplyr,
+    httr,
+    janitor,
+    magrittr,
+    readxl,
+    rlang,
+    stringr,
+    tictoc
 Encoding: UTF-8
 LazyData: true
-Depends:
-	readxl,
-	httr,
-	stringr,
-	dplyr,
-	magrittr,
-	tictoc,
-	janitor
-Imports:
-	readxl,
-	httr,
-	stringr,
-	dplyr,
-	magrittr,
-	tictoc,
-	janitor
+RoxygenNote: 7.1.0
