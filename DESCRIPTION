@@ -14,6 +14,7 @@ Imports:
     janitor,
     magrittr,
     readxl,
+    rlang,
     stringr,
     tictoc
 Encoding: UTF-8

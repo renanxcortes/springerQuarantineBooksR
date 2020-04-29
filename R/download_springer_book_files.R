@@ -2,6 +2,7 @@
 #'
 #' @importFrom dplyr filter pull
 #' @importFrom janitor clean_names
+#' @importFrom rlang .data
 #' @importFrom tictoc tic toc
 #'
 #' @export
@@ -15,7 +16,7 @@ download_springer_book_files <- function(springer_books_titles = NA, springer_ta
   if (is.na(springer_books_titles)) {
     springer_books_titles <- springer_table %>%
       clean_names() %>%
-      pull(book_title) %>%
+      pull(.data$book_title) %>%
       unique()
   }
 
@@ -31,8 +32,8 @@ download_springer_book_files <- function(springer_books_titles = NA, springer_ta
 
     en_book_type <-
       springer_table %>%
-      filter(book_title == title) %>%
-      pull(english_package_name) %>%
+      filter(.data$book_title == title) %>%
+      pull(.data$english_package_name) %>%
       unique()
 
     current_folder = file.path(destination_folder, en_book_type)

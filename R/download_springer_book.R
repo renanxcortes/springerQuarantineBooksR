@@ -3,6 +3,7 @@
 #' @importFrom dplyr arrange desc filter slice
 #' @importFrom httr GET
 #' @importFrom magrittr extract2 %>%
+#' @importFrom rlang .data
 #' @importFrom stringr str_replace
 #'
 #' @export
@@ -12,8 +13,8 @@ download_springer_book <- function(book_spec_title, springer_table){
   file_sep <- .Platform$file.sep
 
   aux <- springer_table %>%
-    filter(book_title == book_spec_title) %>%
-    arrange(desc(copyright_year)) %>%
+    filter(.data$book_title == book_spec_title) %>%
+    arrange(desc(.data$copyright_year)) %>%
     slice(1)
 
   edition <- aux$edition
