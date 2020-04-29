@@ -1,5 +1,12 @@
-# Function that fetchs the pdf file and saves it in the current directory
-
+#' Function that fetchs the pdf file and saves it in the current directory
+#'
+#' @importFrom dplyr arrange filter slice
+#' @importFrom httr GET
+#' @importFrom magrittr extract2 %>%
+#' @importFrom stringr str_replace
+#'
+#' @export
+#'
 download_springer_book <- function(book_spec_title, springer_table){
 
   file_sep <- .Platform$file.sep
