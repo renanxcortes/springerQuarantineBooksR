@@ -7,7 +7,7 @@
 #'
 #' @export
 #'
-download_springer_book_files <- function(springer_books_titles = NA, springer_table = NA, destination_folder = 'springer_quarantine_books') {
+download_springer_book_files <- function(springer_books_titles = NA, springer_table = NA, destination_folder = 'springer_quarantine_books',bookNumber = NA) {
 
   if (is.na(springer_table)) {
     springer_table <- download_springer_table()
@@ -21,8 +21,10 @@ download_springer_book_files <- function(springer_books_titles = NA, springer_ta
   }
 
   n <- length(springer_books_titles)
-
-  i <- 1
+  
+ if(is.na(bookNumber){
+  i <- 1} else {i <- bookNumber}
+    springer_books_titles <- springer_books_titles[i:n]
 
   print("Downloading title latest editions.")
 
