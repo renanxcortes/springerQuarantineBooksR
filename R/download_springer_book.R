@@ -1,6 +1,6 @@
 #' Function that fetchs the pdf file and saves it in the current directory
 #'
-#' @importFrom dplyr arrange filter slice
+#' @importFrom dplyr arrange desc filter slice
 #' @importFrom httr GET
 #' @importFrom magrittr extract2 %>%
 #' @importFrom stringr str_replace
