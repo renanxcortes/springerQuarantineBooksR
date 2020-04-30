@@ -7,11 +7,9 @@
 #'
 #' @export
 #'
-download_springer_book_files <- function(springer_books_titles = NA, springer_table = NA, destination_folder = 'springer_quarantine_books') {
+download_springer_book_files <- function(springer_books_titles = NA, destination_folder = 'springer_quarantine_books', lan = 'eng') {
 
-  if (is.na(springer_table)) {
-    springer_table <- download_springer_table()
-  }
+  springer_table <- download_springer_table(lan = lan)
 
   if (is.na(springer_books_titles)) {
     springer_books_titles <- springer_table %>%
@@ -30,13 +28,14 @@ download_springer_book_files <- function(springer_books_titles = NA, springer_ta
 
     print(paste0('Processing... ', title, ' (', i, ' out of ', n, ')'))
 
-    en_book_type <-
+    book_type <-
       springer_table %>%
       filter(.data$book_title == title) %>%
-      pull(.data$english_package_name) %>%
+      { if(lan == 'eng') pull(., .data$english_package_name) else .} %>%
+      { if(lan == 'ger') pull(., .data$german_package_name) else .} %>%
       unique()
 
-    current_folder = file.path(destination_folder, en_book_type)
+    current_folder = file.path(destination_folder, book_type)
     if (!dir.exists(current_folder)) { dir.create(current_folder, recursive = T) }
     setwd(current_folder)
     tic('Time processed')
