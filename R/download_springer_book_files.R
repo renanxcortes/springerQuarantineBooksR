@@ -22,11 +22,11 @@ download_springer_book_files <- function(springer_books_titles = NA, destination
 
   i <- 1
 
-  print("Downloading title latest editions.")
+  message("Downloading title latest editions.")
 
   for (title in springer_books_titles) {
 
-    print(paste0('Processing... ', title, ' (', i, ' out of ', n, ')'))
+    message(paste0('Processing... ', title, ' (', i, ' out of ', n, ')'))
 
     book_type <-
       springer_table %>%
