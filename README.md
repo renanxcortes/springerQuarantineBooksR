@@ -17,7 +17,7 @@ devtools::install_github("renanxcortes/springerQuarantineBooksR")
 library(springerQuarantineBooksR)
 ```
 
-## Download all books in any repo of your choice:
+## Download all books in any repo of your choice
 
 ```
 setwd('path_of_your_choice')
@@ -34,7 +34,7 @@ It will be generated a repo named `springer_quarantine_books` with a specific st
 
 ![](inst/extdata/directory_org_example.png)
 
-## Download only specific books:
+## Download only specific books
 
 For example, if you'd like to download only books with "Data Science" on the title, you can run:
 
@@ -46,6 +46,15 @@ specific_titles_list <- springer_table %>%
   pull(book_title)
 
 download_springer_book_files(springer_books_titles = specific_titles_list)
+```
+
+## Download books in German
+
+If you'd like to download German books (more info in https://github.com/renanxcortes/springerQuarantineBooksR/issues/16), you can run:
+
+```
+setwd('path_of_your_choice_for_german_books')
+download_springer_book_files(lan = 'ger')
 ```
 
 # Acknowledgments
