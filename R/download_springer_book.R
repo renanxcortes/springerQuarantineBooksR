@@ -18,7 +18,6 @@ download_springer_book <- function(book_spec_title, springer_table){
     slice(1)
 
   edition <- aux$edition
-  en_book_type <- aux$english_package_name
 
   download_url <- aux$open_url %>%
     GET() %>%

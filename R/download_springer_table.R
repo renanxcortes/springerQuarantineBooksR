@@ -6,9 +6,10 @@
 #' @export
 #'
 download_springer_table <-
-  function() {
+  function(lan = 'eng') {
 
-    books_list_url <- 'https://resource-cms.springernature.com/springer-cms/rest/v1/content/17858272/data/v4/'
+    if (lan == 'eng') {books_list_url <- 'https://resource-cms.springernature.com/springer-cms/rest/v1/content/17858272/data/v4/'}
+    if (lan == 'ger') {books_list_url <- 'https://resource-cms.springernature.com/springer-cms/rest/v1/content/17863240/data/v2'}
 
     GET(books_list_url, write_disk(tf <- tempfile(fileext = ".xlsx")))
 
