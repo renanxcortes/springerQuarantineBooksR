@@ -1,5 +1,9 @@
 #' Download the springer table file
 #'
+#' \code{download_springer_table} This function downloads the springer table of all books available.
+#'
+#' @param lan The language of the downloaded books. Can be either set to 'eng' (English) or 'ger' (German). Default is 'eng'.
+#'
 #' @importFrom httr GET write_disk
 #' @importFrom readxl read_excel
 #'

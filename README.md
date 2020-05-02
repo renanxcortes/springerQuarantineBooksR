@@ -48,6 +48,15 @@ specific_titles_list <- springer_table %>%
 download_springer_book_files(springer_books_titles = specific_titles_list)
 ```
 
+## Download `.epub` extension of the books:
+
+If you'd like to download the books in the `.epub` extension (alternatevely, you can download both by setting `filetype = 'both'`), you can run:
+
+```
+setwd('path_of_your_choice_for_epub_books')
+download_springer_book_files(filetype = 'epub')
+```
+
 ## Download books in German
 
 If you'd like to download German books (more info in https://github.com/renanxcortes/springerQuarantineBooksR/issues/16), you can run:
