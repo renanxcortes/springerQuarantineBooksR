@@ -72,4 +72,6 @@ download_springer_book_files(lan = 'ger')
 
 This project draw inspiration from the `springer_free_books` project available at https://github.com/alexgand/springer_free_books.
 
+I also would like to thank @AntoineSoetewey for the constant help on feedbacks and spreading the package!
+
 Thank you, Springer!
