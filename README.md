@@ -4,7 +4,7 @@
 
 **Source:** https://group.springernature.com/gp/group/media/press-releases/freely-accessible-textbook-initiative-for-educators-and-students/17858180?utm_medium=social&utm_content=organic&utm_source=facebook&utm_campaign=SpringerNature_&sf232256230=1
 
-This package has the `download_springer_book_files` function which can be used to download all (or a subset) of these Springer book files freely available. Currently, it fetches only the pdf versions of the books and generates a repo with 7.27GB, if all books are downloaded.
+This package has the `download_springer_book_files` function which can be used to download all (or a subset) of these Springer book files freely available. The default parameters download the latest pdf versions of the English books and generates a repo with 7.27GB.
 
 An excellent blog post with some nice usage examples can be found at https://www.statsandr.com/blog/a-package-to-download-free-springer-books-during-covid-19-quarantine/.
 
