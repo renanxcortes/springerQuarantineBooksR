@@ -6,6 +6,8 @@
 
 This package has the `download_springer_book_files` function which can be used to download all (or a subset) of these Springer book files freely available. Currently, it fetches only the pdf versions of the books and generates a repo with 7.27GB, if all books are downloaded.
 
+An excellent blog post with some nice usage examples can be found at https://www.statsandr.com/blog/a-package-to-download-free-springer-books-during-covid-19-quarantine/.
+
 *This is still a work in progress. Thus, any help and/or feedbacks are welcome!*
 
 ## Installation
