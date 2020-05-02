@@ -7,7 +7,7 @@
 #' @param filetype The file type extension of the books downloaded. Can be either set to 'pdf', 'epub' or 'both'. Default is 'pdf'.
 #'
 #' @importFrom dplyr arrange desc filter slice
-#' @importFrom httr GET
+#' @importFrom httr GET http_error
 #' @importFrom magrittr extract2 %>%
 #' @importFrom rlang .data
 #' @importFrom stringr str_replace
@@ -15,6 +15,8 @@
 #' @export
 #'
 download_springer_book <- function(book_spec_title, springer_table, filetype){
+
+  `%>%` <- magrittr::`%>%`
 
   file_sep <- .Platform$file.sep
 
