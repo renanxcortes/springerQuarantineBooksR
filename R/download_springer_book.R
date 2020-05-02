@@ -10,7 +10,7 @@
 #' @importFrom httr GET http_error
 #' @importFrom magrittr extract2 %>%
 #' @importFrom rlang .data
-#' @importFrom stringr str_replace
+#' @importFrom stringr str_replace str_replace_all
 #'
 #' @export
 #'
@@ -38,16 +38,23 @@ download_springer_book <- function(book_spec_title, springer_table, filetype){
     str_replace('%2F', file_sep) %>%
     paste0('.', filetype)
 
-  get_file = GET(download_url)
+  clean_book_title <- str_replace_all(book_spec_title, '/', '-')  # Avoiding '/' special character in filename
+  clean_book_title <- str_replace_all(clean_book_title, ':', '-') # Avoiding ':' special character in filename
 
-  if(!http_error(get_file)){
+  file_name_string <- paste0(clean_book_title, " - ", edition, ".", filetype)
 
-    clean_book_title <- str_replace(book_spec_title, '/', '-') # Avoiding '/' special character in filename
-    clean_book_title <- str_replace(clean_book_title, ':', '-') # Avoiding ':' special character in filename
+  if (file.exists(file_name_string)) { message('File already exists, skipping book download') }
 
-    write.filename = file(paste0(clean_book_title, " - ", edition, ".", filetype), "wb")
-    writeBin(get_file$content, write.filename)
-    close(write.filename)
+  else {
+
+    get_file = GET(download_url)
+
+    if(!http_error(get_file)){
+
+      write.filename = file(file_name_string, "wb")
+      writeBin(get_file$content, write.filename)
+      close(write.filename)
+    }
+
   }
-
 }
