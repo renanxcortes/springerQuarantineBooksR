@@ -2,14 +2,25 @@
 % Please edit documentation in R/download_springer_book_files.R
 \name{download_springer_book_files}
 \alias{download_springer_book_files}
-\title{Generate all pdf's in the directories organized by book type}
+\title{Download all pdf's/epub's in the directories organized by book type}
 \usage{
 download_springer_book_files(
   springer_books_titles = NA,
-  springer_table = NA,
-  destination_folder = "springer_quarantine_books"
+  destination_folder = "springer_quarantine_books",
+  lan = "eng",
+  filetype = "pdf"
 )
 }
+\arguments{
+\item{springer_books_titles}{A list of books to be downloaded, if left empty, it'll download every book.}
+
+\item{destination_folder}{A folder/path that will be used to save the files.}
+
+\item{lan}{The language of the downloaded books. Can be either set to 'eng' (English) or 'ger' (German). Default is 'eng'.}
+
+\item{filetype}{The file type extension of the books downloaded. Can be either set to 'pdf', 'epub' or 'both'. Default is 'pdf'.}
+}
 \description{
-Generate all pdf's in the directories organized by book type
+\code{download_springer_book_files} This function can receive many arguments that will be used to download books from
+the Springer open repository.
 }

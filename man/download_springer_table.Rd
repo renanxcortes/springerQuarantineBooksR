@@ -4,8 +4,11 @@
 \alias{download_springer_table}
 \title{Download the springer table file}
 \usage{
-download_springer_table()
+download_springer_table(lan = "eng")
+}
+\arguments{
+\item{lan}{The language of the downloaded books. Can be either set to 'eng' (English) or 'ger' (German). Default is 'eng'.}
 }
 \description{
-Download the springer table file
+\code{download_springer_table} This function downloads the springer table of all books available.
 }
