@@ -16,6 +16,8 @@
 #'
 download_springer_book_files <- function(springer_books_titles = NA, destination_folder = 'springer_quarantine_books', lan = 'eng', filetype = 'pdf') {
 
+  `%>%` <- magrittr::`%>%`
+
   springer_table <- download_springer_table(lan = lan)
 
   if (is.na(springer_books_titles)) {
