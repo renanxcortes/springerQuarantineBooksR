@@ -1,14 +1,22 @@
-#' Function that fetchs the pdf file and saves it in the current directory
+#' Function that fetchs the pdf/epub file and saves it in the current directory
+#'
+#' \code{download_springer_book} Downloads a single book from the Springer open repository.
+#'
+#' @param book_spec_title The title of the book to be downloaded.
+#' @param dspringer_table The table where 'book_spec_title' should be downloaded from.
+#' @param filetype The file type extension of the books downloaded. Can be either set to 'pdf', 'epub' or 'both'. Default is 'pdf'.
 #'
 #' @importFrom dplyr arrange desc filter slice
-#' @importFrom httr GET
+#' @importFrom httr GET http_error
 #' @importFrom magrittr extract2 %>%
 #' @importFrom rlang .data
-#' @importFrom stringr str_replace
+#' @importFrom stringr str_replace str_replace_all
 #'
 #' @export
 #'
-download_springer_book <- function(book_spec_title, springer_table){
+download_springer_book <- function(book_spec_title, springer_table, filetype){
+
+  `%>%` <- magrittr::`%>%`
 
   file_sep <- .Platform$file.sep
 
@@ -19,20 +27,34 @@ download_springer_book <- function(book_spec_title, springer_table){
 
   edition <- aux$edition
 
+  if (filetype == 'pdf') { dlpath <- 'content' }
+  if (filetype == 'epub') { dlpath <- 'download' }
+
+
   download_url <- aux$open_url %>%
     GET() %>%
     extract2('url') %>%
-    str_replace('book', paste0('content', file_sep, 'pdf')) %>%
+    str_replace('book', paste0(dlpath, file_sep, filetype)) %>%
     str_replace('%2F', file_sep) %>%
-    paste0('.pdf')
+    paste0('.', filetype)
 
-  pdf_file = GET(download_url)
+  clean_book_title <- str_replace_all(book_spec_title, '/', '-')  # Avoiding '/' special character in filename
+  clean_book_title <- str_replace_all(clean_book_title, ':', '-') # Avoiding ':' special character in filename
 
-  clean_book_title <- str_replace(book_spec_title, '/', '-') # Avoiding '/' special character in filename
-  clean_book_title <- str_replace(clean_book_title, ':', '-') # Avoiding ':' special character in filename
+  file_name_string <- paste0(clean_book_title, " - ", edition, ".", filetype)
 
-  write.filename = file(paste0(clean_book_title, " - ", edition, ".pdf"), "wb")
-  writeBin(pdf_file$content, write.filename)
-  close(write.filename)
+  if (file.exists(file_name_string)) { message('File already exists, skipping book download') }
 
+  else {
+
+    get_file = GET(download_url)
+
+    if(!http_error(get_file)){
+
+      write.filename = file(file_name_string, "wb")
+      writeBin(get_file$content, write.filename)
+      close(write.filename)
+    }
+
+  }
 }

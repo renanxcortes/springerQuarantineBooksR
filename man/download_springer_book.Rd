@@ -2,10 +2,17 @@
 % Please edit documentation in R/download_springer_book.R
 \name{download_springer_book}
 \alias{download_springer_book}
-\title{Function that fetchs the pdf file and saves it in the current directory}
+\title{Function that fetchs the pdf/epub file and saves it in the current directory}
 \usage{
-download_springer_book(book_spec_title, springer_table)
+download_springer_book(book_spec_title, springer_table, filetype)
+}
+\arguments{
+\item{book_spec_title}{The title of the book to be downloaded.}
+
+\item{filetype}{The file type extension of the books downloaded. Can be either set to 'pdf', 'epub' or 'both'. Default is 'pdf'.}
+
+\item{dspringer_table}{The table where 'book_spec_title' should be downloaded from.}
 }
 \description{
-Function that fetchs the pdf file and saves it in the current directory
+\code{download_springer_book} Downloads a single book from the Springer open repository.
 }
