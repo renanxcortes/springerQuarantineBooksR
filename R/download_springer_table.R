@@ -18,7 +18,7 @@ download_springer_table <-
 
     if (lan == 'eng') {
 
-      books_list_url <- 'https://resource-cms.springernature.com/springer-cms/rest/v1/content/17858272/data/v5/'
+      books_list_url <- 'https://resource-cms.springernature.com/springer-cms/rest/v1/content/17858272/data/v6/'
       GET(books_list_url, write_disk(tf <- tempfile(fileext = ".xlsx")))
       springer_table <- read_excel(tf) %>%
         clean_names()
