@@ -36,9 +36,15 @@ download_springer_book_files <- function(springer_books_titles = NA, destination
   message("Downloading title latest editions.")
 
   for (title in springer_books_titles) {
-
+    
     message(paste0('Processing... ', title, ' (', i, ' out of ', n, ')'))
-
+    
+    if(is.na(title)){
+      message("NA title found. Skipping it.")
+      i <- i + 1
+      next()
+    }
+    
     book_type <-
       springer_table %>%
       filter(.data$book_title == title) %>%
