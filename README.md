@@ -2,6 +2,10 @@
 
 Some Markdown text with <span style="color:blue">some *blue* text</span>.
 
+```html
+   <span style="color:blue">some *blue* text</span>
+```
+
 # `springerQuarantineBooksR`: download all Springer books made available during the COVID-19 quarantine
 
 **"With the Coronavirus outbreak having an unprecedented impact on education, Springer Nature is launching a global program to support learning and teaching at higher education institutions worldwide."**
