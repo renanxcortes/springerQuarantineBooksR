@@ -3,7 +3,7 @@
 Some Markdown text with <span style="color:blue">some *blue* text</span>.
 
 ```html
-   <font color='red'>test blue color font</font>
+   <p style="color:red">This is a paragraph.</p>
 ```
 
 # `springerQuarantineBooksR`: download all Springer books made available during the COVID-19 quarantine
