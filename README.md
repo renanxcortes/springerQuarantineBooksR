@@ -2,7 +2,7 @@
 
 Some Markdown text with <span style="color:blue">some *blue* text</span>.
 
-```html
+```css
    <p style="color:red">This is a paragraph.</p>
 ```
 
