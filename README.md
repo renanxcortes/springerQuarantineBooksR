@@ -1,10 +1,4 @@
-![#f03c15](**Important: currently Springer added an additional step that is preventing automatic download on their website. Therefore, this package won't behave as expected.**)
-
-Some Markdown text with <span style="color:blue">some *blue* text</span>.
-
-```css
-   <p style="color:red">This is a paragraph.</p>
-```
+![](inst/extdata/issue_captcha_warning.png)
 
 # `springerQuarantineBooksR`: download all Springer books made available during the COVID-19 quarantine
 
