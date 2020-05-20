@@ -47,7 +47,7 @@ download_springer_book <- function(book_spec_title, springer_table, filetype){
 
   else {
 
-    get_file = GET(download_url)
+    get_file = GET(download_url, set_cookies(`recaptcha` = ""))
 
     if(!http_error(get_file)){
 

@@ -31,12 +31,12 @@ download_springer_table <-
       # springer_table2: medical and nursing German books
       # More details in https://github.com/renanxcortes/springerQuarantineBooksR/issues/16#issuecomment-621004526
 
-      books_list_url1 <- 'https://resource-cms.springernature.com/springer-cms/rest/v1/content/17863240/data/v2'
+      books_list_url1 <- 'https://resource-cms.springernature.com/springer-cms/rest/v1/content/17863240/data/'
       GET(books_list_url1, write_disk(tf1 <- tempfile(fileext = ".xlsx")))
       springer_table1 <- read_excel(tf1) %>%
         clean_names()
 
-      books_list_url2 <- 'https://resource-cms.springernature.com/springer-cms/rest/v1/content/17856246/data/v3'
+      books_list_url2 <- 'https://resource-cms.springernature.com/springer-cms/rest/v1/content/17856246/data/'
       GET(books_list_url2, write_disk(tf2 <- tempfile(fileext = ".xlsx")))
       springer_table2 <- read_excel(tf2) %>%
         clean_names()
